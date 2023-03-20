@@ -17,16 +17,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiDataSourceModule {
-
     @Provides
     fun provideBaseUrl() = Constants.BASE_URL
-
     @Provides
     @Singleton
     fun provideMoshi(): Moshi =
         Moshi.Builder().add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
             .build()
-
     @Singleton
     @Provides
     fun provideOkHttpClient() = if (BuildConfig.DEBUG){
@@ -40,7 +37,6 @@ object ApiDataSourceModule {
             .Builder()
             .build()
     }
-
     @Singleton
     @Provides
     fun provideRetrofit(

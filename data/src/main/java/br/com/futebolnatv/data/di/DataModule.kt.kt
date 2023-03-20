@@ -19,30 +19,21 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import javax.inject.Singleton
-
-
 @Module
 @InstallIn(ViewModelComponent::class)
 object DataModule {
-
     @Provides
     fun provideMatchRepository(repository: MatchRepositoryImpl): MatchRepository = repository
-
     @Provides
     fun provideOnboardingRepository(repository: OnboardingRepositoryImpl): OnboardingRepository = repository
-
     @Provides
     fun provideTeamMapper(mapper: TeamMapperImpl): TeamMapper = mapper
-
     @Provides
     fun provideMatchMapper(mapper: MatchMapperImpl): MatchMapper = mapper
-
     @Provides
     fun provideOnboardingLocalDataSource(localDataSource: OnboardingLocalDataSource): OnboardingLocalDataSource = localDataSource
-
     @Provides
     fun provideMatchApiDataSource(retrofit: Retrofit) = retrofit.create(MatchApiDataSource::class.java)
-
 }
 
 
