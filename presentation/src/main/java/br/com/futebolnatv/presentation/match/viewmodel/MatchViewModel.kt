@@ -53,7 +53,7 @@ class MatchViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             findAllMatchUseCase.invoke().catch { throwable ->
                  _matchListState.postValue(
-                     prepareError(throwable.toRequestThrowable().getApiErrorType())
+                     prepareError(throwable.getApiErrorType())
                  )
             }.collect { listMatch ->
                     if(listMatch.isEmpty())

@@ -1,10 +1,13 @@
 package br.com.futebolnatv.data.match.repository
 
+import br.com.futebolnatv.commons.extentions.getApiErrorType
+import br.com.futebolnatv.commons.extentions.toRequestThrowable
 import br.com.futebolnatv.data.match.datasource.MatchApiDataSource
 import br.com.futebolnatv.data.match.mapper.MatchMapper
 import br.com.futebolnatv.model.MatchModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
@@ -24,6 +27,8 @@ class MatchRepositoryImpl @Inject constructor(
                 matchMapper::mapToDomainModel
             )
         )
-    }.flowOn(Dispatchers.IO)
+    }.catch { throwable ->
+        throw throwable.toRequestThrowable()
+    }
 
 }

@@ -34,22 +34,30 @@ fun MatchListScreen(
     Column(verticalArrangement = Arrangement.spacedBy(24.dp))
     {
         when(val matchListState  = viewModel.matchListState.observeAsState().value) {
-            MatchListState.Loading -> MatchLoadingScreen()
-            is MatchListState.Success -> MatchListContentScreen(
-                listMatchModel = matchListState.listMatch
-            )
-            MatchListState.Empty -> MatchErrorScreen(
-                title = "Tela Vazia",
-                description = "Não foi encontrado nenhuam partida com esses filtros aplicados",
-                tryAgain = true,
-                onClick = onClickClearFilter)
 
-            else -> MatchErrorScreen(
-                title = "Tela de Erro",
-                description = "Tente novamente mais tarde, estamos com problema",
-                tryAgain = true,
-                onClick = onClickTryAgain
-            )
+            is MatchListState.Success -> {
+                MatchListContentScreen(
+                    listMatchModel = matchListState.listMatch
+                )
+            }
+            MatchListState.Empty -> {
+                MatchErrorScreen(
+                    title = "Tela Vazia",
+                    description = "Não foi encontrado nenhuam partida com esses filtros aplicados",
+                    tryAgain = true,
+                    onClick = onClickClearFilter)
+            }
+            is MatchListState.Error -> {
+                MatchErrorScreen(
+                    title = matchListState.title,
+                    description = matchListState.description,
+                    tryAgain = matchListState.tryAgain,
+                    onClick = onClickTryAgain
+                )
+            }
+            else -> {
+                MatchLoadingScreen()
+            }
         }
 
     }

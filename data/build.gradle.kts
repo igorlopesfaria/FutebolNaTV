@@ -69,4 +69,11 @@ dependencies {
 
     // Moshi
     implementation(Libs.Moshi.getMoshiVersion())
+
+    // Test
+    testImplementation(Libs.Test.getJunitVersion())
+    testImplementation(Libs.Test.getMockkVersion())
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES_VERSION}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:${Versions.COROUTINES_VERSION}")
+
 }
