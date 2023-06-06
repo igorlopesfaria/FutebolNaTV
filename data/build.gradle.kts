@@ -7,39 +7,29 @@ plugins {
 
 android {
     compileSdk = Apps.compileSdkVersion
+    namespace = "br.com.futebolnatv.data"
 
     defaultConfig {
         minSdk = Apps.minSdkVersion
-        targetSdk = Apps.targetSdkVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    lint {
-        checkReleaseBuilds = false
-        checkDependencies = true
-        checkAllWarnings = true
-        warningsAsErrors = true
-        abortOnError = false
-    }
-
-    testOptions {
-        unitTests.isIncludeAndroidResources = true
-        unitTests.isReturnDefaultValues = true
-    }
-    sourceSets {
-        getByName("main").java.srcDirs("src/main/kotlin")
-        getByName("test").java.srcDirs("src/test/kotlin")
-        getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
+        jvmTarget = "17"
     }
 }
 

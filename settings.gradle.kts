@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven ("https://jitpack.io") // <- here we go
     }
 }
 rootProject.name = "FutebolNaTV"
@@ -18,7 +19,6 @@ include(
     ":app",
     ":commons",
     ":data",
-    ":designsystem",
     ":domain",
     ":model",
     ":presentation"

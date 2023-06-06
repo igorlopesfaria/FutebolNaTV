@@ -1,8 +1,6 @@
 package br.com.futebolnatv.data.di
 
 import br.com.futebolnatv.commons.constants.Constants
-import br.com.futebolnatv.data.BuildConfig
-import br.com.futebolnatv.data.match.datasource.MatchApiDataSource
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -26,17 +24,12 @@ object ApiDataSourceModule {
             .build()
     @Singleton
     @Provides
-    fun provideOkHttpClient() = if (BuildConfig.DEBUG){
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+    fun provideOkHttpClient() =
         OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
-    }else{
-        OkHttpClient
-            .Builder()
-            .build()
-    }
+
+
     @Singleton
     @Provides
     fun provideRetrofit(

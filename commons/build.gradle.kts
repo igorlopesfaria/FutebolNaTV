@@ -1,13 +1,38 @@
 plugins {
-  id("java-library")
-  id("org.jetbrains.kotlin.jvm")
+  id("com.android.library")
+  id("kotlin-android")
+  id("kotlin-parcelize")
+  id("kotlin-kapt")
 }
 
-java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
-}
+android {
+  compileSdk = Apps.compileSdkVersion
+  namespace = "br.com.futebolnatv.commons"
 
+  defaultConfig {
+    minSdk = Apps.minSdkVersion
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    release {
+      isMinifyEnabled = false
+      proguardFiles(
+        getDefaultProguardFile("proguard-android-optimize.txt"),
+        "proguard-rules.pro"
+      )
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+
+}
 dependencies {
 
   // Moshi

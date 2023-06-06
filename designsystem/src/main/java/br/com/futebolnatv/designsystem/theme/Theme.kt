@@ -1,18 +1,16 @@
 package br.com.futebolnatv.designsystem.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
     primary = Indigo200,
-    primaryVariant = Indigo800,
     secondary = Light_blue200,
     onSecondary = Black,
     onPrimary = Black,
-    secondaryVariant = Light_blue200,
     onBackground = White,
     onSurface = White,
     background = Black,
@@ -20,13 +18,11 @@ private val DarkColorPalette = darkColors(
     error = Red400
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
     primary = Indigo500,
-    primaryVariant = Indigo800,
     secondary = Light_blue200,
     onSecondary = Black,
     onPrimary = White,
-    secondaryVariant = Light_blue700,
     onBackground = Black,
     onSurface = Black,
     background = White,
@@ -43,7 +39,7 @@ fun DSTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () 
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colors,
         typography = Typography,
         shapes = Shapes,
         content = content

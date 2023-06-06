@@ -7,47 +7,38 @@ plugins {
 
 android {
     compileSdk = Apps.compileSdkVersion
+    namespace = "br.com.futebolnatv.designsystem"
 
     defaultConfig {
         minSdk = Apps.minSdkVersion
-        targetSdk = Apps.targetSdkVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
-    lint {
-        checkReleaseBuilds = false
-        checkDependencies = true
-        checkAllWarnings = true
-        warningsAsErrors = true
-        abortOnError = false
-    }
-
-    testOptions {
-        unitTests.isIncludeAndroidResources = true
-        unitTests.isReturnDefaultValues = true
-    }
-    sourceSets {
-        getByName("main").java.srcDirs("src/main/kotlin")
-        getByName("test").java.srcDirs("src/test/kotlin")
-        getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
     }
     buildFeatures {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0"
-    }
 
 }
 
@@ -56,9 +47,8 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2023.01.00"))
 
     api(Libs.Compose.getComposeUIVersion())
-    api(Libs.Compose.getComposeMaterialVersion())
+    api(Libs.Compose.getComposeMaterial3Version())
     api(Libs.Compose.getComposeToolingPreviewVersion())
     debugImplementation(Libs.Compose.getComposeToolingVersion())
-    debugImplementation(Libs.Compose.getComposeTestManifestVersion())
     androidTestImplementation(Libs.Compose.getComposeTestJUnitVersion())
 }

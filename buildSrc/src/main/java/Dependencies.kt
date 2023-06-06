@@ -22,7 +22,7 @@ object Module {
 
 object Versions {
 
-    const val KOTLIN_VERSION = "1.6.21"
+    const val KOTLIN_VERSION = "1.7.0"
     const val ANDROIDX_CORE_VERSION = "1.9.0"
     const val GRADLE_PLUGIN_VERSION = "7.2.2"
 
@@ -34,7 +34,7 @@ object Versions {
     const val MATERIAL_VERSION = "1.8.0"
     const val DYNAMICANIMATION_VERSION = "1.0.0"
 
-    const val MOSHI_VERSION = "1.14.0"
+    const val MOSHI_VERSION = "1.13.0"
     const val RETROFIT_VERSION = "2.9.0"
     const val OKHTTP_VERSION = "4.10.0"
 
@@ -43,7 +43,7 @@ object Versions {
     const val ACTIVITY_VERSION = "1.6.1"
 
     const val HILT_VERSION = "1.0.0"
-    const val DAGGER_HILT_VERSION = "2.42"
+    const val DAGGER_HILT_VERSION = "2.46.1"
 
     const val MOCKK_VERSION = "1.10.5"
     const val TEST_VIEWMODEL_VERSION = "1.10.5"
@@ -52,7 +52,16 @@ object Versions {
     const val ROBOLECTRIC_VERSION = "4.5.1"
     const val ESPRESSO_VERSION = "4.5.1"
 
+    const val LOTTIE_VERSION = "6.0.0"
+    const val LOTTIE_COMPOSE_VERSION = "1.0.0-rc01"
+
+    const val COMPOSE_BOOM_VERSION = "2023.05.01"
+    const val COMPOSE_MATERIAL_3_VERSION = "1.1.0"
+    const val COMPOSE_UI_VERSION = "1.4.3"
+
     const val GOOGLE_SERVICE_VERSION = "4.2.0"
+
+    const val HELIUM_VERSION = "b23a3b0a12"
 }
 
 object Libs {
@@ -81,16 +90,22 @@ object Libs {
     }
 
     object Compose {
-        fun getComposeUIVersion() = "androidx.compose.ui:ui"
-        fun getComposeMaterialVersion() = "androidx.compose.material:material"
-        fun getComposeToolingPreviewVersion() = "androidx.compose.ui:ui-tooling-preview"
 
+
+        fun getComposeBOM() = "androidx.compose:compose-bom:${Versions.COMPOSE_BOOM_VERSION}"
+        fun getComposeUIVersion() = "androidx.compose.ui:ui:${Versions.COMPOSE_UI_VERSION}"
+        fun getComposeMaterial3Version() = "androidx.compose.material3:material3:${Versions.COMPOSE_MATERIAL_3_VERSION}"
+        fun getComposeToolingPreviewVersion() = "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE_UI_VERSION}"
+        fun getComposeToolingVersion() = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE_UI_VERSION}"
+        fun getComposeTestJUnitVersion() = "androidx.compose.ui:ui-test-junit4:1.4.2"
         fun getComposeLiveDataVersion() = "androidx.compose.runtime:runtime-livedata:1.3.3"
-        fun getComposeToolingVersion() = "androidx.compose.ui:ui-tooling"
-        fun getComposeTestJUnitVersion() = "androidx.compose.ui:ui-test-junit4"
-        fun getComposeTestManifestVersion() = "androidx.compose.ui:ui-tooling"
+
     }
 
+    object Lottie {
+        fun getLottieVersion() = "com.airbnb.android:lottie:${Versions.LOTTIE_VERSION}"
+        fun getLottieComposeVersion() = "com.airbnb.android:lottie-compose:${Versions.LOTTIE_VERSION}"
+    }
     object LifeCycleVersion {
         fun getLifeCycleViewModelVersion() = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
         fun getLifeCycleComposeViewModelVersion() = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.LIFECYCLE_VERSION}"
@@ -123,6 +138,13 @@ object Libs {
 
     object Hilt {
         fun getHiltCompilerVersion(): String = "androidx.hilt:hilt-compiler:${Versions.HILT_VERSION}"
+    }
+
+    object Helium {
+        fun getHeliumCoreVersion(): String = "com.github.igorlopesfaria.Helium:core:${Versions.HELIUM_VERSION}"
+        fun getHeliumStatusViewVersion(): String = "com.github.igorlopesfaria.Helium:statusview:${Versions.HELIUM_VERSION}"
+        fun getHeliumChipVersion(): String = "com.github.igorlopesfaria.Helium:chip:${Versions.HELIUM_VERSION}"
+        fun getHeliumButtonVersion(): String = "com.github.igorlopesfaria.Helium:button:${Versions.HELIUM_VERSION}"
     }
 
     object DaggerHilt {

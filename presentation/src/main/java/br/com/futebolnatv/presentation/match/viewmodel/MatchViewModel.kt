@@ -1,30 +1,26 @@
 package br.com.futebolnatv.presentation.match.viewmodel
 
-import android.annotation.SuppressLint
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.futebolnatv.commons.extentions.getApiErrorType
-import br.com.futebolnatv.commons.extentions.toRequestThrowable
 import br.com.futebolnatv.commons.model.ApiErrorType
-import br.com.futebolnatv.domain.match.*
+import br.com.futebolnatv.domain.match.FilterMatchByParamsUseCase
+import br.com.futebolnatv.domain.match.FindAllMatchUseCase
+import br.com.futebolnatv.domain.match.MakeChampionshipListUseCase
+import br.com.futebolnatv.domain.match.MakeDateListUseCase
+import br.com.futebolnatv.domain.match.MakeTeamListUseCase
 import br.com.futebolnatv.domain.match.model.FilterMatchModel
 import br.com.futebolnatv.model.MatchModel
-import br.com.futebolnatv.presentation.R
 import br.com.futebolnatv.presentation.match.state.FilterMatchState
 import br.com.futebolnatv.presentation.match.state.MatchListState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class MatchViewModel @Inject constructor(
     private val filterMatchUseCase: FilterMatchByParamsUseCase,
@@ -32,7 +28,6 @@ class MatchViewModel @Inject constructor(
     private val makeChampionshipListUseCase: MakeChampionshipListUseCase,
     private val makeDateListUseCase: MakeDateListUseCase,
     private val makeTeamListUseCase: MakeTeamListUseCase,
-    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     private var _matchListState = MutableLiveData<MatchListState>()
@@ -67,25 +62,10 @@ class MatchViewModel @Inject constructor(
 
     private fun prepareError(errorType: ApiErrorType) = when(errorType) {
         is ApiErrorType.Network -> {
-            MatchListState.Error(
-                title = context.getString(R.string.error_network_title),
-                description = context.getString(R.string.error_network_descpription),
-                tryAgain = true
-            )
-        }
-        is ApiErrorType.Unauthorized -> {
-            MatchListState.Error(
-                title = context.getString(R.string.error_unautorized_title),
-                description = context.getString(R.string.error_unautorized_descpription),
-                tryAgain = false
-            )
+            MatchListState.InternetError
         }
         else -> {
-            MatchListState.Error(
-                title = context.getString(R.string.error_generic_title),
-                description = context.getString(R.string.error_generic_descpription),
-                tryAgain = true
-            )
+            MatchListState.GenericError
         }
     }
 

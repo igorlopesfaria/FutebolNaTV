@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
-      <module name="FutebolNaTV.app" target="17" />
-      <module name="FutebolNaTV.buildSrc" target="17" />
-      <module name="FutebolNaTV.buildSrc.main" target="17" />
-      <module name="FutebolNaTV.buildSrc.test" target="17" />
-      <module name="FutebolNaTV.data" target="17" />
-      <module name="FutebolNaTV.designsystem" target="17" />
-      <module name="FutebolNaTV.domain" target="17" />
-      <module name="FutebolNaTV.presentation" target="17" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="17" />
   </component>
 </project>
